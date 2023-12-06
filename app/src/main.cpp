@@ -1,23 +1,7 @@
-/*
- * Copyright (C) 2017 ~ 2017 Deepin Technology Co., Ltd.
- *
- * Author:     zccrs <zccrs@live.com>
- *
- * Maintainer: zccrs <zhangjide@deepin.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+// Copyright (C) 2017 ~ 2017 Deepin Technology Co., Ltd.
+// SPDX-FileCopyrightText: 2022 UnionTech Software Technology Co., Ltd.
+//
+// SPDX-License-Identifier: GPL-3.0-only
 
 #include <QDebug>
 #ifndef DISABLE_DTK
@@ -113,8 +97,8 @@ int main(int argc, char *argv[])
         rollingFileAppender->setLogFilesLimit(5);
         rollingFileAppender->setDatePattern(RollingFileAppender::DailyRollover);
 
-        logger->registerAppender(rollingFileAppender);
-        logger->registerAppender(consoleAppender);
+        dlogger->registerAppender(rollingFileAppender);
+        dlogger->registerAppender(consoleAppender);
 
         if (qEnvironmentVariableIsSet("PKEXEC_UID")) {
             const quint32 pkexec_uid = qgetenv("PKEXEC_UID").toUInt();
@@ -192,8 +176,8 @@ int main(int argc, char *argv[])
     rollingFileAppender->setLogFilesLimit(5);
     rollingFileAppender->setDatePattern(RollingFileAppender::DailyRollover);
 
-    logger->registerCategoryAppender("deepin.ghost", consoleAppender);
-    logger->registerCategoryAppender("deepin.ghost", rollingFileAppender);
+    dlogger->registerCategoryAppender("deepin.ghost", consoleAppender);
+    dlogger->registerCategoryAppender("deepin.ghost", rollingFileAppender);
 #endif
 
     parser.parse();
